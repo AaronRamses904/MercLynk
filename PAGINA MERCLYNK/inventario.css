@@ -1,0 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f4;
+  padding-bottom: 40px;
+}
+
+/* HEADER */
+.header {
+  background: #000000;
+  color: rgb(255, 255, 255);
+  padding: 25px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.titulo {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+.subtitulo {
+  font-size: 1em;
+}
+
+/* FORMULARIO */
+.form-section {
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  background: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-section h2 {
+  margin-bottom: 15px;
+  color: white;
+}
+
+.formulario {
+  display: grid;
+  gap: 10px;
+}
+
+.formulario input {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+}
+
+.formulario button {
+  padding: 10px;
+  background: #ffd633;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.formulario button:hover {
+  background: #ffcc00;
+}
+
+/* TABLA */
+.tabla-section {
+  width: 90%;
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+.tabla-section h2 {
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #ffcc00;
+  color: white;
+}
+
+tr:hover {
+  background: #f0f8ff;
+}
+
+/* BOTONES */
+.btn-eliminar {
+  padding: 6px 12px;
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-eliminar:hover {
+  background: #cc0000;
+}

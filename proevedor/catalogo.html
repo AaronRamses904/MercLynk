@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Proveedores | MercLynk</title>
+  <link rel="stylesheet" href="catalogo.css">
+
+  <style>
+    /* --- ESTILOS DEL REGISTRO DE PROVEEDOR --- */
+    .registro-container {
+      width: 100%;
+      max-width: 500px;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      margin: 40px auto;
+    }
+
+    .registro-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .registro-container label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #444;
+    }
+
+    .registro-container input,
+    .registro-container textarea,
+    .registro-container select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .registro-container textarea {
+      resize: vertical;
+    }
+
+    .registro-container input:focus,
+    .registro-container select:focus,
+    .registro-container textarea:focus {
+      border-color: #00a8ff;
+      box-shadow: 0 0 5px rgba(0,168,255,0.4);
+    }
+
+    .btn-registro {
+      width: 100%;
+      padding: 12px;
+      background: #00a8ff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn-registro:hover {
+      background: #007acc;
+    }
+
+    .mostrar-pass {
+      margin-top: -10px;
+      cursor: pointer;
+      font-size: 0.9em;
+      color: #007acc;
+      text-align: right;
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- ENCABEZADO -->
+  <header>
+    <h1>Merc<span class="resaltado">Lynk</span></h1>
+    <nav>
+      <a href="../PAGINA MERCLYNK/index.html">Inicio</a>
+      <a href="#">Registro</a>
+      <a href="../busqueda.html">Proveedores</a>
+      <a href="#">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- FORMULARIO DE REGISTRO DE PROVEEDORES -->
+  <section class="registro-container">
+    <h2>Registro de Proveedor</h2>
+
+    <form id="formProveedor">
+
+      <label for="negocio">Nombre del negocio</label>
+      <input type="text" id="negocio" required>
+
+      <label for="representante">Nombre del representante</label>
+      <input type="text" id="representante" required>
+
+      <label for="correo">Correo empresarial</label>
+      <input type="email" id="correo" required>
+
+      <label for="telefono">Teléfono del negocio</label>
+      <input type="tel" id="telefono" required>
+
+      <label for="categoria">Tipo de negocio / categoría</label>
+      <select id="categoria" required>
+        <option value="">Seleccione una categoría</option>
+        <option>Alimentos</option>
+        <option>Ropa</option>
+        <option>Tecnología</option>
+        <option>Hogar</option>
+        <option>Servicios</option>
+        <option>Otro</option>
+      </select>
+
+      <label for="direccion">Dirección completa</label>
+      <input type="text" id="direccion" required>
+
+      <label for="fiscal">Número de identificación fiscal</label>
+      <input type="text" id="fiscal" required>
+
+      <label for="logo">Logo del negocio (opcional)</label>
+      <input type="file" id="logo" accept="image/*">
+
+      <label for="descripcion">Descripción del negocio</label>
+      <textarea id="descripcion" rows="4" required></textarea>
+
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" required>
+
+      <p class="mostrar-pass" onclick="togglePass()">👁 Mostrar u ocultar contraseña</p>
+
+      <button class="btn-registro" type="submit">Registrar proveedor</button>
+    </form>
+  </section>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal">
+    <div class="modal-contenido">
+      <div class="modal-imagen">
+        <img id="modal-img" src="" alt="">
+      </div>
+      <div class="modal-info">
+        <h3 id="modal-titulo"></h3>
+        <p id="modal-desc"></p>
+      </div>
+    </div>
+    <button class="cerrar-modal" onclick="cerrarModal()">×</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span class="resaltado">MercLynk</span>. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function togglePass() {
+      const pass = document.getElementById("password");
+      pass.type = pass.type === "password" ? "text" : "password";
+    }
+
+    document.getElementById("formProveedor").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("¡Proveedor registrado correctamente!");
+    });
+  </script>
+
+  <script src="catalogo.js"></script>
+</body>
+</html>
+
