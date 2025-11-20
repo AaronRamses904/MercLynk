@@ -1,11 +1,16 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
     font-family:'Poppins',sans-serif;
-    background:#f7f7f7;
+    background:#000000;
     color:hsl(0, 0%, 0%);
 }
 .logo-text {
-  font-size: 1.8em;
+  font-size: 2.8em;
+  font-weight: 700;
+}
+
+.logo-text2 {
+  font-size: 2.8em;
   font-weight: 700;
 }
 
@@ -17,30 +22,219 @@ body{
   color: #ffcc00; /* amarillo */
 }
 
-.header{display:flex;align-items:center;justify-content:space-between;padding:10px 30px;background:#000000;box-shadow:0 2px 6px;
-    text-decoration: red;}
-.logo{display:flex;align-items:center;gap:10px;}
-.logo img{height:45px;width:auto;}
-.nav ul{display:flex;list-style:none;gap:20px;}
-.nav a{text-decoration:none;color:#ffffff;font-weight:500;}
-.nav a:hover{color:#ffcc00;}
-.buscador{display:flex;align-items:center;gap:5px;}
-.buscador input{padding:6px 10px;border:1px solid #ccc;border-radius:5px;}
-.buscador button{background:#ffffff;color:#fff;border:white;padding:6px 10px;border-radius:5px;cursor:pointer;}
-.buscador button:hover{background:#ffcc00;}
+.logo-text2 .merc2 {
+  color: #ffffff;
+}
 
+.logo-text2 .lynk2 {
+  color: #ffcc00;
+}
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0px 10px;
+  background:#000000d6;
+  box-shadow:0 2px 6px;
+  height: fit-content;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: fit-content;
+}
+
+.logo{
+  display:flex;
+  align-items:
+  center;gap:10px;}
+  
+.logo img{height:45px;width:auto;}
+
+.logo2{
+  position: relative;
+}
+
+@media (max-width: 1000px) {
+  .logo{
+    display: none;
+  }
+}
+
+@media (max-width: 2000px) {
+  .logo2{
+    display: none;
+  }
+}
+@media (max-width: 1000px) {
+  .logo2{
+    display:flex;
+  }
+}
+
+nav{
+  width: 40%;
+  padding-left: 0%;
+  background-color: transparent;
+}
+
+.nav ul{
+  display:flex;
+  list-style:none;
+  justify-content: space-between;
+}
+@media (max-width: 1000px) {
+  nav {
+    justify-content: space-between;
+    gap: 10%;
+  }
+}
+@media (max-width: 660px) {
+  nav {
+    display: flex;
+  }
+  nav ul li{
+    margin: 1%;
+  }
+}
+.nav a{
+  text-decoration:none;
+  color:#ffffff;
+  font-weight:500;}
+
+.nav a:hover{color:#ffcc00;}
+
+/*Barra de busqueda*/
+.inputGroup {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 1em 0 1em 0;
+  position: relative;
+  display: flex;
+  width: 40vh;
+}
+
+.inputGroup input {
+  font-size: 100%;
+  padding: 0.8em;
+  outline: none;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
+  color: white;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.inputGroup label {
+  font-size: 100%;
+  position: absolute;
+  left: 0;
+  padding: 0.8em;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: rgb(255, 255, 255);
+  background-color: #00000000;
+  border-radius: 50%;
+}
+
+@media (max-width: 660px) {
+  .inputGroup label {
+    display: none;  }
+  .inputGroup {
+    width: 10%;
+  }
+}
+@media (max-width: 500px) {
+  .inputGroup label {
+    display: flex;  }
+  .inputGroup {
+    width: 70%;
+  }
+  nav {
+    display: none;
+  }
+}
+.inputGroup :is(input:focus, input:valid)~label {
+  transform: translateY(-50%) scale(0.97);
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.1em;
+  background-color: #000000bc;
+  border-radius: 50%;
+}
+
+.inputGroup :is(input:focus, input:valid) {
+  border-color: #ffcc00;
+}
+
+.inputGroup-Buscar {
+  position: absolute;
+  right: 10px;                 /* distancia del borde derecho del input */
+  top: 50%;                    /* lo coloca a la mitad del input */
+  transform: translateY(-50%); /* lo centra perfectamente */
+  border-radius: 100%;
+}
+
+.inputGroup-Buscar button {
+    background-color: black;
+    border: none;
+    padding: 6px 8px;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;   /* centra el SVG dentro del botón */
+    justify-content: center;
+    transition: background-color .3s ease, transform .2s ease;
+}
+
+/* Lupa blanca inicialmente */
+.inputGroup-Buscar button svg path {
+    stroke: white;
+    transition: stroke .3s ease;
+}
+
+/* Hover → lupa amarilla */
+.inputGroup-Buscar button:hover svg path {
+    stroke:#ffcc00;
+}
+
+/* Active (cuando presiona el botón) → más intensidad */
+.inputGroup-Buscar button:active svg path {
+    stroke: #ffcc00;
+    transform: scale(0.95);
+}
+/*-----------------------------------------------------------------*/
+/*Icono perfil*/
+.user-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white; /* ← controla el color del ícono */
+}
+.user-btn:hover {
+  color: #ffcc00;
+}
+/*-----------------------------------------------------------------*/
 /* Slider */
 .slider {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  margin: 0px;
+  justify-content: center;
 }
 .slides {
   width: 100%;
   height: 100%;
-  position: relative;
+
+
 }
+@media (max-width: 1000px) {
+  .slides {
+    margin-top: 1%;
+  }
+}
+
 .slide {
   position: absolute;
   width: 100%;
@@ -52,7 +246,8 @@ body{
 }
 
 .slide.active{
-    opacity:1;
+    opacity: 60%;
+    height: 100%;
 }
 .texto-slider .lynk {
     color: #ffcc00;
@@ -60,12 +255,11 @@ body{
 }
 .texto-slider {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50px;
   transform: translateY(10%);
   text-align: left;
   color: #fff;
-  
   padding: 20px 30px;
   border-radius: 10px;
 }
@@ -78,17 +272,87 @@ body{
   margin-bottom: 20px;
   font-size: 1.2em;
 }
-.btn {
-  background: #ffcc00;
-  color: #111;
+/*boton registrate ahora*/
+.registro{
+  position: relative;
   padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
+  border-radius: 7px;
+  border: 1px solid rgb(255, 232, 61);
+  font-size: 14px;
+  text-transform: uppercase;
   font-weight: 600;
+  letter-spacing: 2px;
+  background: #0000006c;
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
 }
 
-.btn:hover {
-  background: #ffd633;
+.registro:hover {
+  background: rgb(255, 217, 0);
+  box-shadow: 0 0 30px 5px rgba(236, 189, 0, 0.815);
+  color: #000000;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.registro:hover::before {
+  -webkit-animation: sh02 0.5s 0s linear;
+  -moz-animation: sh02 0.5s 0s linear;
+  animation: sh02 0.5s 0s linear;
+}
+
+.registro::before {
+  content: '';
+  display: block;
+  width: 0px;
+  height: 86%;
+  position: absolute;
+  top: 7%;
+  left: 0%;
+  opacity: 0;
+  background: #fff;
+  box-shadow: 0 0 50px 30px #fff;
+  -webkit-transform: skewX(-20deg);
+  -moz-transform: skewX(-20deg);
+  -ms-transform: skewX(-20deg);
+  -o-transform: skewX(-20deg);
+  transform: skewX(-20deg);
+}
+
+@keyframes sh02 {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+.registro:active {
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: box-shadow 0.2s ease-in;
+  -moz-transition: box-shadow 0.2s ease-in;
+  transition: box-shadow 0.2s ease-in;
+}
+
+.plataforma_de_comercio {
+  background-color: white;
+  padding: 20px 30px;
+}
+.plataforma_de_comercio h1, h3{
+  color:#ffd000
 }
 /*Planes*/
 .planes-section {
