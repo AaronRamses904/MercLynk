@@ -27,38 +27,97 @@
     <!-- BOTONES CLIENTE / PROVEEDOR — AHORA ABAJO DEL TÍTULO -->
     <div class="tipo-usuario">
       <button type="button" class="btn-select activo" onclick="setTipo('cliente')">Cliente</button>
-      <button type="button" class="btn-select" onclick="setTipo('proveedor')">Proveedor</button>
+      <button type="button" class="btn-select" onclick="setTipo('proveedor')">Emprendedor</button>
     </div>
 
     <form id="formRegistro">
 
-      <label for="nombre">Nombre completo</label>
+      <label for="nombre">Nombre</label>
       <input type="text" id="nombre" required>
+
+      <label for="nombre">Apellido</label>
+      <input type="text" id="apellido" required>
+      
+      <div id="camposCliente">
+      <label for="fechaNacimiento">Fecha de nacimiento</label>
+      <input type="date" id="fechaNacimiento" required>
+      </div>
 
       <label for="correo">Correo electrónico</label>
       <input type="email" id="correo" required>
-
-      <label for="telefono">Teléfono</label>
-      <input type="tel" id="telefono" required>
-
-      <label for="direccion">Dirección completa</label>
-      <input type="text" id="direccion" required>
 
       <label for="password">Contraseña</label>
       <input type="password" id="password" required>
       <p class="mostrar-pass" onclick="togglePass()">👁 Mostrar u ocultar contraseña</p>
 
-      <!-- CAMPOS EXTRA PARA PROVEEDOR -->
-      <div id="camposProveedor" style="display:none">
-        <label for="negocio">Nombre del negocio</label>
-        <input type="text" id="negocio">
+      <label for="telefono">Teléfono</label>
+      <input type="tel" id="telefono" required>
 
-        <label for="rubro">Rubro</label>
-        <input type="text" id="rubro">
+      <label for="departamento">Departamento</label>
+      <select id="departamento" required>
+      <option value="">Seleccione un departamento</option>
+      </select>
 
-        <label for="ruc">RUC (opcional)</label>
-        <input type="text" id="ruc">
-      </div>
+      <label for="ciudad">Provincia</label>
+      <select id="ciudad" required disabled>
+      <option value="">Seleccione una Provincia</option>
+      </select>
+
+      <label for="distrito">Distrito</label>
+      <select id="distrito" required disabled>
+      <option value="">Seleccione un distrito</option>
+      </select>
+
+      <label for="direccion" id="labelDireccion">Dirección completa</label>
+      <input type="text" id="direccion" required>
+
+   <!-- CAMPOS EXTRA PARA EMPRENDEDOR -->
+<div id="camposProveedor" style="display:none">
+
+  <label for="negocio">Nombre del negocio</label>
+  <input type="text" id="negocio" maxlength="100">
+
+  <label for="rubro">Rubro</label>
+  <select id="rubro">
+    <option value="">Seleccione un rubro</option>
+    <option value="ropa">Ropa y accesorios</option>
+    <option value="alimentos">Alimentos y bebidas</option>
+    <option value="tecnologia">Tecnología</option>
+    <option value="hogar">Hogar y decoración</option>
+    <option value="belleza">Belleza y cuidado personal</option>
+    <option value="artesania">Artesanías</option>
+    <option value="otro">Otro</option>
+  </select>
+
+  <label for="descripcion">Describe tu emprendimiento</label>
+  <textarea id="descripcion" rows="3" maxlength="250"
+            placeholder="¿Qué vendes? ¿Qué te hace especial?"></textarea>
+
+  <label for="ruc">RUC (opcional)</label>
+  <input type="text" id="ruc" inputmode="numeric" maxlength="11"
+         pattern="(10|20)[0-9]{9}"
+         title="El RUC tiene 11 dígitos y empieza con 10 o 20">
+
+  <label for="whatsapp">WhatsApp del negocio</label>
+  <input type="tel" id="whatsapp" inputmode="numeric" maxlength="9"
+         pattern="9[0-9]{8}" placeholder="9XXXXXXXX"
+         title="Ingresa un número de 9 dígitos que empiece con 9">
+
+  <label class="check-linea">
+    <input type="checkbox" id="mismoNumero">
+    <span>Es el mismo número de mi teléfono</span>
+  </label>
+
+  <label for="redSocial">Instagram, Facebook o TikTok (opcional)</label>
+  <input type="url" id="redSocial" placeholder="https://...">
+
+</div>
+
+<!-- TÉRMINOS (cliente y emprendedor) -->
+<label class="check-linea">
+  <input type="checkbox" id="aceptaTerminos" required>
+  <span>Acepto los <a href="#">Términos y condiciones</a> y la <a href="#">Política de privacidad</a></span>
+</label>
 
       <!-- BOTÓN REGISTRARME con REDIRECCIÓN -->
       <button class="btn-registro" type="submit">Registrarme</button>
@@ -71,8 +130,8 @@
     <p>© 2025 <span class="resaltado">MercLynk</span>. Todos los derechos reservados.</p>
   </footer>
 
+  <script src="data/ubigeo.js"></script>
   <script src="Registro.js"></script>
-
 </body>
 </html>
 

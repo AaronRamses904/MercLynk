@@ -174,3 +174,256 @@ body {
   color: #000;
   text-decoration: none;
 }
+
+
+/* =====================================================
+   NUEVOS ESTILOS: PERFIL DE CLIENTE Y DE EMPRENDEDOR
+   ===================================================== */
+
+.perfil-container {
+  padding: 0 20px;
+}
+
+.btn-link {
+  text-decoration: none;
+}
+
+.btn-opcion {
+  font-family: inherit;
+  font-size: 14px;
+  color: #000;
+}
+
+.btn-oscuro {
+  background: #000;
+  color: #ffcc00;
+}
+
+.btn-oscuro:hover {
+  background: #222;
+}
+
+/* Aviso cuando no hay sesión */
+.aviso {
+  background: #fff8d6;
+  border: 1px solid #ffcc00;
+  padding: 14px 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.aviso a {
+  color: #000;
+  font-weight: 700;
+}
+
+/* Etiqueta Cliente / Emprendedor */
+.badge {
+  display: inline-block;
+  background: #000;
+  color: #ffcc00;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.perfil-sub {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+/* Estadísticas del emprendedor */
+.estadisticas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.stat {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  border-bottom: 4px solid #ffcc00;
+}
+
+.stat strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.stat span {
+  color: #666;
+  font-size: 13px;
+}
+
+/* Secciones */
+.seccion {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px 30px;
+  margin-top: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.seccion h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #ffcc00;
+  display: inline-block;
+}
+
+/* Campos de datos */
+.campos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px 24px;
+}
+
+.campo.ancho {
+  grid-column: 1 / -1;
+}
+
+.campo label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 6px;
+}
+
+.campo input,
+.campo textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  background: #f7f7f7;
+  color: #222;
+}
+
+.campo textarea {
+  resize: vertical;
+}
+
+/* Campos bloqueados: texto legible */
+.campo input:disabled,
+.campo textarea:disabled {
+  -webkit-text-fill-color: #222;
+  opacity: 1;
+  cursor: default;
+}
+
+/* Campos en modo edición */
+.campo input:not(:disabled),
+.campo textarea:not(:disabled) {
+  background: #fff;
+  border-color: #ffcc00;
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  outline: none;
+  box-shadow: 0 0 6px rgba(255, 204, 0, 0.5);
+}
+
+/* Herramientas del emprendedor */
+.herramientas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.herramienta {
+  display: block;
+  padding: 18px;
+  border-radius: 14px;
+  background: #f7f7f7;
+  border: 1px solid #eee;
+  text-decoration: none;
+  color: #000;
+  transition: 0.2s ease;
+}
+
+.herramienta:hover {
+  border-color: #ffcc00;
+  background: #fffbe6;
+  transform: translateY(-2px);
+}
+
+.herramienta strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.herramienta span {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Estado vacío (favoritos, etc.) */
+.vacio {
+  text-align: center;
+  color: #777;
+  padding: 20px 10px;
+}
+
+.vacio a {
+  color: #000;
+  font-weight: 700;
+}
+
+/* Mensaje flotante */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #ffcc00;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.toast.visible {
+  opacity: 1;
+}
+
+/* Celulares */
+@media (max-width: 640px) {
+  .perfil-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .perfil-opciones,
+  .campos,
+  .estadisticas {
+    grid-template-columns: 1fr;
+  }
+
+  .seccion {
+    padding: 22px 18px;
+  }
+
+  .header {
+    padding: 15px 18px;
+  }
+}

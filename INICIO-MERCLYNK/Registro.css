@@ -128,18 +128,51 @@ nav a:hover {
   font-size: 0.95rem;
 }
 
-.registro-container input {
+.registro-container input,
+.registro-container select,
+.registro-container textarea {
   width: 100%;
   padding: 12px;
   margin-bottom: 18px;
   border: 1px solid #aaa;
   border-radius: 8px;
   transition: 0.3s;
+  font-family: inherit;
+  box-sizing: border-box;
+  background: #fff;
 }
 
-.registro-container input:focus {
+.registro-container input:focus,
+.registro-container select:focus,
+.registro-container textarea:focus {
   border-color: #ffd500;
   box-shadow: 0 0 6px rgba(255,213,0,0.4);
+  outline: none;
+}
+
+.registro-container textarea {
+  resize: vertical;
+}
+
+/* === CASILLAS (términos y condiciones) === */
+.registro-container .check-linea {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 14px;
+  font-weight: normal;
+  font-size: 0.88rem;
+}
+
+.registro-container .check-linea input[type="checkbox"] {
+  width: auto;
+  margin: 3px 0 0 0;
+  flex-shrink: 0;
+}
+
+.registro-container .check-linea a {
+  color: #000;
+  font-weight: 600;
 }
 
 /* === MOSTRAR CONTRASEÑA === */

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi perfil | MercLynk</title>
+
+  <link rel="stylesheet" href="perfil.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-rol="cliente">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <h1 class="logo-text">
+      <a href="../index.html"><span class="merc">Merc</span><span class="lynk">Lynk</span></a>
+    </h1>
+  </div>
+
+  <!-- botón perfil -->
+  <button class="user-btn">
+    <a href="#" class="link-perfil"><svg width="39" height="39" viewBox="0 0 24 24" fill="none">
+      <path
+        stroke="currentColor"
+        stroke-width="1.25"
+        d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+      />
+    </svg></a>
+  </button>
+</header>
+
+
+<!-- PERFIL -->
+<section class="perfil-container">
+
+  <!-- Aviso si todavía no hay datos de sesión -->
+  <div class="aviso" id="avisoSesion" hidden>
+    Aún no has iniciado sesión. <a href="../INICIO-MERCLYNK/Registro.html">Regístrate aquí</a> para ver tus datos.
+  </div>
+
+  <!-- TARJETA PRINCIPAL -->
+  <div class="perfil-card">
+
+    <div class="perfil-foto">
+      <img id="fotoPerfil" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Foto de perfil">
+      <input type="file" id="inputFoto" accept="image/*" hidden>
+      <button class="btn-cambiar-foto" id="btnFoto" type="button">Cambiar foto</button>
+    </div>
+
+    <div class="perfil-info">
+      <span class="badge">Cliente</span>
+      <h2 id="titulo">Usuario</h2>
+      <p class="correo" id="correoPerfil">usuario@correo.com</p>
+      <p class="rol" id="desdePerfil">Cliente desde --/--</p>
+
+      <div class="perfil-opciones">
+        <button class="btn-opcion" id="btnEditar" type="button">Editar información</button>
+        <a href="../Recuperacion/cambiar.html" class="btn-opcion btn-link">Cambiar contraseña</a>
+        <a href="../index.html" class="btn-opcion btn-link">Explorar productos</a>
+        <button class="btn-opcion btn-oscuro" id="btnCerrar" type="button">Cerrar sesión</button>
+        <button class="btn-opcion" id="btnCancelar" type="button" hidden>Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DATOS PERSONALES -->
+  <div class="seccion">
+    <h3>Datos personales</h3>
+    <div class="campos">
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" data-campo="nombre" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" data-campo="apellido" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="fechaNacimiento">Fecha de nacimiento</label>
+        <input type="date" id="fechaNacimiento" data-campo="fechaNacimiento" disabled>
+      </div>
+      <div class="campo">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" data-campo="correo" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" data-campo="telefono" data-editable
+               inputmode="numeric" maxlength="9" pattern="9[0-9]{8}"
+               title="Ingresa un celular de 9 dígitos que empiece con 9"
+               placeholder="—" required disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIRECCIÓN DE ENTREGA -->
+  <div class="seccion">
+    <h3>Dirección de entrega</h3>
+    <div class="campos">
+      <div class="campo">
+        <label for="departamento">Departamento</label>
+        <input type="text" id="departamento" data-campo="departamentoNombre" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="provincia">Provincia</label>
+        <input type="text" id="provincia" data-campo="provinciaNombre" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="distrito">Distrito</label>
+        <input type="text" id="distrito" data-campo="distritoNombre" placeholder="—" disabled>
+      </div>
+      <div class="campo ancho">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" data-campo="direccion" data-editable
+               placeholder="—" required disabled>
+      </div>
+      <div class="campo ancho">
+        <label for="referencia">Referencia</label>
+        <input type="text" id="referencia" data-campo="referencia" data-editable
+               placeholder="—" disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAVORITOS -->
+  <div class="seccion">
+    <h3>Mis favoritos</h3>
+    <div class="vacio">
+      <p>Aún no tienes productos favoritos.</p>
+      <p><a href="../index.html">Explora los catálogos</a> y guarda los que más te gusten.</p>
+    </div>
+  </div>
+
+</section>
+
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-contenido">
+    <div class="footer-info">
+      <h4>Sobre MercLynk</h4>
+      <p>Una plataforma creada para impulsar el emprendimiento peruano, conectando vendedores y compradores a nivel nacional.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Enlaces útiles</h4>
+      <ul>
+        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="#">Términos y condiciones</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-redes">
+      <h4>Síguenos</h4>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">TikTok</a></li>
+    </div>
+  </div>
+</footer>
+
+<script src="perfil.js"></script>
+</body>
+</html>

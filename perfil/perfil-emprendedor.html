@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil del Emprendedor | MercLynk</title>
+
+  <link rel="stylesheet" href="perfil.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body data-rol="proveedor">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    <h1 class="logo-text">
+      <a href="../index.html"><span class="merc">Merc</span><span class="lynk">Lynk</span></a>
+    </h1>
+  </div>
+
+  <!-- botón perfil -->
+  <button class="user-btn">
+    <a href="#" class="link-perfil"><svg width="39" height="39" viewBox="0 0 24 24" fill="none">
+      <path
+        stroke="currentColor"
+        stroke-width="1.25"
+        d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+      />
+    </svg></a>
+  </button>
+</header>
+
+
+<!-- PERFIL -->
+<section class="perfil-container">
+
+  <!-- Aviso si todavía no hay datos de sesión -->
+  <div class="aviso" id="avisoSesion" hidden>
+    Aún no has iniciado sesión. <a href="../INICIO-MERCLYNK/Registro.html">Regístrate como emprendedor</a> para ver los datos de tu negocio.
+  </div>
+
+  <!-- TARJETA PRINCIPAL -->
+  <div class="perfil-card">
+
+    <div class="perfil-foto">
+      <img id="fotoPerfil" src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="Logo del negocio">
+      <input type="file" id="inputFoto" accept="image/*" hidden>
+      <button class="btn-cambiar-foto" id="btnFoto" type="button">Cambiar logo</button>
+    </div>
+
+    <div class="perfil-info">
+      <span class="badge">Emprendedor</span>
+      <h2 id="titulo">Mi negocio</h2>
+      <p class="perfil-sub" id="subtitulo">Rubro · Ubicación</p>
+      <p class="correo" id="correoPerfil">usuario@correo.com</p>
+      <p class="rol" id="desdePerfil">Emprendedor desde --/--</p>
+
+      <div class="perfil-opciones">
+        <button class="btn-opcion" id="btnEditar" type="button">Editar información</button>
+        <a href="../Recuperacion/cambiar.html" class="btn-opcion btn-link">Cambiar contraseña</a>
+        <button class="btn-opcion btn-oscuro" id="btnCerrar" type="button">Cerrar sesión</button>
+        <button class="btn-opcion" id="btnCancelar" type="button" hidden>Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ESTADÍSTICAS (por ahora en cero; luego se conectan a la base de datos) -->
+  <div class="estadisticas">
+    <div class="stat">
+      <strong id="statProductos">0</strong>
+      <span>Productos publicados</span>
+    </div>
+    <div class="stat">
+      <strong id="statContactos">0</strong>
+      <span>Contactos recibidos</span>
+    </div>
+    <div class="stat">
+      <strong id="statVentas">S/ 0</strong>
+      <span>Ventas del mes</span>
+    </div>
+  </div>
+
+  <!-- HERRAMIENTAS -->
+  <div class="seccion">
+    <h3>Mis herramientas</h3>
+    <div class="herramientas">
+      <a class="herramienta" href="#">
+        <strong>Mis productos</strong>
+        <span>Publica y edita tu catálogo</span>
+      </a>
+      <a class="herramienta" href="../Herramientas/ventas.html">
+        <strong>Stock de venta</strong>
+        <span>Registra tus ventas</span>
+      </a>
+      <a class="herramienta" href="../Herramientas/Inventario.html">
+        <strong>Stock de inventario</strong>
+        <span>Controla tus existencias</span>
+      </a>
+      <a class="herramienta" href="../Herramientas/dashboard.html">
+        <strong>Gráficos interactivos</strong>
+        <span>Mira cómo va tu negocio</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- DATOS DEL NEGOCIO -->
+  <div class="seccion">
+    <h3>Datos del negocio</h3>
+    <div class="campos">
+      <div class="campo">
+        <label for="negocio">Nombre del negocio</label>
+        <input type="text" id="negocio" data-campo="negocio" data-editable
+               maxlength="100" placeholder="—" required disabled>
+      </div>
+      <div class="campo">
+        <label for="rubro">Rubro</label>
+        <input type="text" id="rubro" data-campo="rubro" placeholder="—" disabled>
+      </div>
+      <div class="campo ancho">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" data-campo="descripcion" data-editable
+                  rows="3" maxlength="250" placeholder="—" disabled></textarea>
+      </div>
+      <div class="campo">
+        <label for="ruc">RUC</label>
+        <input type="text" id="ruc" data-campo="ruc" data-editable
+               inputmode="numeric" maxlength="11" pattern="(10|20)[0-9]{9}"
+               title="El RUC tiene 11 dígitos y empieza con 10 o 20"
+               placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="whatsapp">WhatsApp del negocio</label>
+        <input type="tel" id="whatsapp" data-campo="whatsapp" data-editable
+               inputmode="numeric" maxlength="9" pattern="9[0-9]{8}"
+               title="Ingresa un número de 9 dígitos que empiece con 9"
+               placeholder="—" required disabled>
+      </div>
+      <div class="campo ancho">
+        <label for="redSocial">Red social</label>
+        <input type="url" id="redSocial" data-campo="redSocial" data-editable
+               placeholder="—" disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- UBICACIÓN DEL NEGOCIO -->
+  <div class="seccion">
+    <h3>Ubicación del negocio</h3>
+    <div class="campos">
+      <div class="campo">
+        <label for="departamento">Departamento</label>
+        <input type="text" id="departamento" data-campo="departamentoNombre" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="provincia">Provincia</label>
+        <input type="text" id="provincia" data-campo="provinciaNombre" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="distrito">Distrito</label>
+        <input type="text" id="distrito" data-campo="distritoNombre" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="direccion">Dirección del negocio</label>
+        <input type="text" id="direccion" data-campo="direccion" data-editable
+               placeholder="—" required disabled>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATOS PERSONALES -->
+  <div class="seccion">
+    <h3>Datos personales</h3>
+    <div class="campos">
+      <div class="campo">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" data-campo="nombre" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="apellido">Apellido</label>
+        <input type="text" id="apellido" data-campo="apellido" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" data-campo="correo" placeholder="—" disabled>
+      </div>
+      <div class="campo">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" data-campo="telefono" data-editable
+               inputmode="numeric" maxlength="9" pattern="9[0-9]{8}"
+               title="Ingresa un celular de 9 dígitos que empiece con 9"
+               placeholder="—" required disabled>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-contenido">
+    <div class="footer-info">
+      <h4>Sobre MercLynk</h4>
+      <p>Una plataforma creada para impulsar el emprendimiento peruano, conectando vendedores y compradores a nivel nacional.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Enlaces útiles</h4>
+      <ul>
+        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="#">Términos y condiciones</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-redes">
+      <h4>Síguenos</h4>
+      <li><a href="#">Facebook</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">TikTok</a></li>
+    </div>
+  </div>
+</footer>
+
+<script src="perfil.js"></script>
+</body>
+</html>
