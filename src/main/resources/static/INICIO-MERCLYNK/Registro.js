@@ -18,29 +18,21 @@ function setTipo(seleccion) {
     esEmprendedor ? "Registro de Emprendedor" : "Registro de Cliente";
   document.getElementById("camposProveedor").style.display =
     esEmprendedor ? "block" : "none";
-  document.getElementById("camposCliente").style.display =        // NUEVO
-    esEmprendedor ? "none" : "block";                              // NUEVO
+  document.getElementById("camposCliente").style.display =
+    esEmprendedor ? "none" : "block";
   document.getElementById("labelDireccion").textContent =
     esEmprendedor ? "Dirección del negocio" : "Dirección completa";
 
   // Obligatorios solo para el emprendedor
   ["negocio", "rubro", "whatsapp"].forEach(id => {
-    document.getElementById(id).required = esEmprendedor;
+    const campo = document.getElementById(id);
+    if (campo) campo.required = esEmprendedor;
   });
 
   // Obligatorio solo para el cliente
-  document.getElementById("fechaNacimiento").required = !esEmprendedor;  // NUEVO
+  const campoFecha = document.getElementById("fechaNacimiento");
+  if (campoFecha) campoFecha.required = !esEmprendedor;
 }
-
-// Envío del formulario
-document.getElementById("formRegistro").addEventListener("submit", (e) => {
-  e.preventDefault();
-  alert(`¡Registro enviado como ${tipo.toUpperCase()}!`);
-
-  // 🔥 REDIRECCIÓN DESPUÉS DE REGISTRAR
-  window.location.href = "../index.html";
-  // ⬆️ Cambia esto si tu archivo está en otra ruta
-});
 
 // ===== UBICACIÓN: Departamento → Provincia → Distrito =====
 // Requiere cargar data/ubigeo.js ANTES de este archivo en el HTML
@@ -154,4 +146,63 @@ fechaNacimiento.addEventListener("input", () => {
     fechaNacimiento.setCustomValidity("");
   }
 });
+
 cargarUbigeo();
+
+
+// ===== ENVÍO DEL FORMULARIO A SPRING BOOT (MYSQL) =====
+document.getElementById("formRegistro").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const esEmprendedor = tipo === "proveedor";
+
+  // Obtener el texto legible de Departamento, Provincia y Distrito
+  const depTexto = selDepartamento.selectedIndex > 0 ? selDepartamento.options[selDepartamento.selectedIndex].text : "";
+  const provTexto = selProvincia.selectedIndex > 0 ? selProvincia.options[selProvincia.selectedIndex].text : "";
+  const distTexto = selDistrito.selectedIndex > 0 ? selDistrito.options[selDistrito.selectedIndex].text : "";
+
+  // Armar el objeto JSON que recibirá UsuarioController en Spring Boot
+  const datosUsuario = {
+    tipo: esEmprendedor ? "EMPRENDEDOR" : "CLIENTE",
+    nombre: document.getElementById("nombre")?.value || "",
+    apellido: document.getElementById("apellido")?.value || "",
+    fechaNacimiento: !esEmprendedor ? (document.getElementById("fechaNacimiento")?.value || null) : null,
+    correo: document.getElementById("email")?.value || document.getElementById("correo")?.value || "",
+    password: document.getElementById("password")?.value || "",
+    telefono: document.getElementById("telefono")?.value || "",
+    departamento: depTexto,
+    provincia: provTexto,
+    distrito: distTexto,
+    direccion: document.getElementById("direccion")?.value || "",
+
+    // Datos exclusivos si se registra como Emprendedor
+    nombreNegocio: esEmprendedor ? (document.getElementById("negocio")?.value || null) : null,
+    rubro: esEmprendedor ? (document.getElementById("rubro")?.value || null) : null,
+    descripcion: esEmprendedor ? (document.getElementById("descripcion")?.value || null) : null,
+    ruc: esEmprendedor ? (document.getElementById("ruc")?.value || null) : null,
+    whatsapp: esEmprendedor ? (document.getElementById("whatsapp")?.value || null) : null,
+    redesSociales: esEmprendedor ? (document.getElementById("redes")?.value || null) : null
+  };
+
+  try {
+    const respuesta = await fetch("http://localhost:8080/api/usuarios/registrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(datosUsuario)
+    });
+
+    if (respuesta.ok) {
+      alert(`¡Registro exitoso como ${datosUsuario.tipo}!`);
+      window.location.href = "../index.html";
+    } else {
+      const errorTexto = await respuesta.text();
+      console.error("Error del servidor:", errorTexto);
+      alert("Hubo un error al guardar los datos en la base de datos.");
+    }
+  } catch (error) {
+    console.error("Error de red:", error);
+    alert("No se pudo conectar con el servidor. Asegúrate de que Spring Boot esté ejecutándose.");
+  }
+});
