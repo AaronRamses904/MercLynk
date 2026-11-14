@@ -3,17 +3,15 @@ package com.example.demo;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuario")
-public class usuario {
+@Table(name = "emprendedor")
+public class Emprendedor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String tipo; // "cliente" o "proveedor" (emprendedor)
     private String nombre;
     private String apellido;
-    private String fechaNacimiento;
     private String correo;
     private String password;
     private String telefono;
@@ -22,7 +20,7 @@ public class usuario {
     private String distrito;
     private String direccion;
 
-    // Campos exclusivos para Emprendedor
+    // Datos exclusivos del emprendedor
     private String nombreNegocio;
     private String rubro;
     private String descripcion;
@@ -30,21 +28,15 @@ public class usuario {
     private String whatsapp;
     private String redesSociales;
 
-    // Getters y Setters (Genera todos con Alt + Insert o clic derecho -> Source Action en tu editor)
+    // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
 
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
     public String getApellido() { return apellido; }
     public void setApellido(String apellido) { this.apellido = apellido; }
-
-    public String getFechaNacimiento() { return fechaNacimiento; }
-    public void setFechaNacimiento(String fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
 
     public String getCorreo() { return correo; }
     public void setCorreo(String correo) { this.correo = correo; }

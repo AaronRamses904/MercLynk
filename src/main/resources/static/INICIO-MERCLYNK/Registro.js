@@ -150,59 +150,61 @@ fechaNacimiento.addEventListener("input", () => {
 cargarUbigeo();
 
 
-// ===== ENVÍO DEL FORMULARIO A SPRING BOOT (MYSQL) =====
+// ===== ENVÍO DEL FORMULARIO SEPARADO POR TIPO DE USUARIO =====
 document.getElementById("formRegistro").addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const esEmprendedor = tipo === "proveedor";
 
-  // Obtener el texto legible de Departamento, Provincia y Distrito
   const depTexto = selDepartamento.selectedIndex > 0 ? selDepartamento.options[selDepartamento.selectedIndex].text : "";
   const provTexto = selProvincia.selectedIndex > 0 ? selProvincia.options[selProvincia.selectedIndex].text : "";
   const distTexto = selDistrito.selectedIndex > 0 ? selDistrito.options[selDistrito.selectedIndex].text : "";
 
-  // Armar el objeto JSON que recibirá UsuarioController en Spring Boot
-  const datosUsuario = {
-    tipo: esEmprendedor ? "EMPRENDEDOR" : "CLIENTE",
+  // Elegimos la ruta y armamos el objeto según sea Emprendedor o Cliente
+  const url = esEmprendedor
+    ? "http://localhost:8080/api/registro/emprendedor"
+    : "http://localhost:8080/api/registro/cliente";
+
+  const datos = {
     nombre: document.getElementById("nombre")?.value || "",
     apellido: document.getElementById("apellido")?.value || "",
-    fechaNacimiento: !esEmprendedor ? (document.getElementById("fechaNacimiento")?.value || null) : null,
     correo: document.getElementById("email")?.value || document.getElementById("correo")?.value || "",
     password: document.getElementById("password")?.value || "",
     telefono: document.getElementById("telefono")?.value || "",
     departamento: depTexto,
     provincia: provTexto,
     distrito: distTexto,
-    direccion: document.getElementById("direccion")?.value || "",
-
-    // Datos exclusivos si se registra como Emprendedor
-    nombreNegocio: esEmprendedor ? (document.getElementById("negocio")?.value || null) : null,
-    rubro: esEmprendedor ? (document.getElementById("rubro")?.value || null) : null,
-    descripcion: esEmprendedor ? (document.getElementById("descripcion")?.value || null) : null,
-    ruc: esEmprendedor ? (document.getElementById("ruc")?.value || null) : null,
-    whatsapp: esEmprendedor ? (document.getElementById("whatsapp")?.value || null) : null,
-    redesSociales: esEmprendedor ? (document.getElementById("redes")?.value || null) : null
+    direccion: document.getElementById("direccion")?.value || ""
   };
 
+  if (esEmprendedor) {
+    datos.nombreNegocio = document.getElementById("negocio")?.value || "";
+    datos.rubro = document.getElementById("rubro")?.value || "";
+    datos.descripcion = document.getElementById("descripcion")?.value || "";
+    datos.ruc = document.getElementById("ruc")?.value || "";
+    datos.whatsapp = document.getElementById("whatsapp")?.value || "";
+    datos.redesSociales = document.getElementById("redes")?.value || "";
+  } else {
+    datos.fechaNacimiento = document.getElementById("fechaNacimiento")?.value || "";
+  }
+
   try {
-    const respuesta = await fetch("http://localhost:8080/api/usuarios/registrar", {
+    const respuesta = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(datosUsuario)
+      body: JSON.stringify(datos)
     });
 
     if (respuesta.ok) {
-      alert(`¡Registro exitoso como ${datosUsuario.tipo}!`);
+      alert(`¡Registro exitoso como ${esEmprendedor ? "EMPRENDEDOR" : "CLIENTE"}!`);
       window.location.href = "../index.html";
     } else {
-      const errorTexto = await respuesta.text();
-      console.error("Error del servidor:", errorTexto);
-      alert("Hubo un error al guardar los datos en la base de datos.");
+      alert("Hubo un error al guardar en la base de datos.");
     }
   } catch (error) {
-    console.error("Error de red:", error);
-    alert("No se pudo conectar con el servidor. Asegúrate de que Spring Boot esté ejecutándose.");
+    console.error("Error de conexión:", error);
+    alert("No se pudo conectar con el servidor de Spring Boot.");
   }
 });
